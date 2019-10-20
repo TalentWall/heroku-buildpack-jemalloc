@@ -16,7 +16,11 @@ if [ -f $ENV_DIR/JEMALLOC_VERSION ]; then
 fi
 
 #url="https://github.com/TalentWall/heroku-buildpack-jemalloc/releases/download/$STACK/jemalloc-$version.tar.bz2"
-url="$JEMALLOC_URL"
+
+if [ -f $ENV_DIR/JEMALLOC_VERSION ]; then
+  url=$(cat $ENV_DIR/JEMALLOC_URL)
+fi
+
 dest="$BUILD_DIR/vendor/jemalloc"
 
 echo "-----> Vendoring jemalloc $version"
